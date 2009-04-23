@@ -18,6 +18,7 @@ require 'astrails/safe/sink'
 require 'astrails/safe/local'
 require 'astrails/safe/s3'
 
+require 'astrails/safe/svndump'
 
 module Astrails
   module Safe
@@ -33,9 +34,9 @@ module Astrails
 
       Astrails::Safe::Mysqldump.run(config[:mysqldump, :databases])
       Astrails::Safe::Archive.run(config[:tar, :archives])
-
+      Astrails::Safe::Svndump.run(config[:svndump, :repos])
+      
       Astrails::Safe::TmpFile.cleanup
     end
   end
 end
-
